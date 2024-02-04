@@ -11,6 +11,16 @@ class CreateCustomerService {
       throw new Error("Name and email are required");
     }
 
+    const customerAlreadyExists = await prismaClient.customer.findFirst({
+      where: {
+        email,
+      },
+    });
+
+    if (customerAlreadyExists) {
+      throw new Error("Customer already exists");
+    }
+
     const customer = await prismaClient.customer.create({
       data: {
         name,
