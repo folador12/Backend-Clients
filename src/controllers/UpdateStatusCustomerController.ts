@@ -3,7 +3,7 @@ import { UpdateStatusCustomerService } from "../services/UpdateStatusCustomerSer
 
 class UpdateStatusCustomerController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
-    const { id } = request.query as { id: string };
+    const { id } = request.params as { id: string };
     const { status } = request.body as { status: string };
 
     const updateStatusCustomerService = new UpdateStatusCustomerService();
